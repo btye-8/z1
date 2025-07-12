@@ -596,62 +596,12 @@ body {
     </div>
 
     <!-- Toast Notifications -->
-    <!-- <div id="toast-container" class="toast-container"></div> -->
+     <div id="toast-container" class="toast-container"></div>
 
     <!-- Scripts -->
     <script src="/socket.io/socket.io.js"></script>
     <!-- <script src="script.js"></script> -->
-    <script> // Ask for browser notification permission on page load
-if (Notification.permission !== "granted" && Notification.permission !== "denied") {
-    Notification.requestPermission();
-}
-
-function showSystemNotification(sender, message) {
-    if (Notification.permission === "granted") {
-        new Notification(`New message from ${sender}`, {
-            body: message
-        });
-    }
-}
-    fetch('/messages')
-      .then(res => res.json())
-      .then(data => {
-        data.forEach(addMessage);
-      });
-
-    function addMessage(msg) {
-      const div = document.createElement("div");
-      div.textContent = `${msg.user}: ${msg.text}`;
-      chatBox.appendChild(div);
-    }
-
-    socket.on("new-message", addMessage);
-
-    function sendMessage() {
-      const text = document.getElementById("message").value;
-      const msg = { user: username, text };
-      socket.emit("new-message", msg);
-      document.getElementById("message").value = "";
-    }
-
-      function clearChat() {
-  fetch('/clear', { method: 'POST' })
-    .then(() => {
-      chatBox.innerHTML = '';
-    });
-}
-socket.on("receive-message", (data) => {
-    const { sender, message } = data;
-
-    appendMessage(sender, message); // Your existing code to show the message
-
-    // If the message is from the other user, show system notification
-    if (sender !== Dev) {
-        showSystemNotification(sender, message);
-    }
-});
-
-    </script>
+   
      <script>// Socket.IO connection
 const socket = io();
 
