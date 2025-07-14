@@ -39,7 +39,7 @@ db.serialize(() => {
 
   // Insert default users
   const users = [
-    { username: 'Gauri', password: '18072007' },
+    { username: 'Jai', password: 'Jai13' },
     { username: 'Btye', password: '18042004' }
   ];
 
